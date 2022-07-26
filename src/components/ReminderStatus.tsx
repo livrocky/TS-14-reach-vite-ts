@@ -1,6 +1,5 @@
 import React from 'react';
 import Reminder from '../types/reminder';
-import reminderStatus from '../types/reminderStatus';
 interface ReminderStatusProps {
   status: boolean;
 }

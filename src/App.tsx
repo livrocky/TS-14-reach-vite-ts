@@ -16,15 +16,20 @@ function App() {
     loadReminders();
   }, []);
 
-  async function loadReminders() {
+  async function loadReminders(): Promise<void> {
     const rems = await reminderService.getReminders();
     console.log('rems ===', rems);
     setReminders(rems);
   }
 
+  function handleDelete(deleteId: Reminder['id']): Promise<void> {
+    console.log('delete Id===', deleteId);
+    setReminders((prevReminders) => prevReminders.filter((r) => r.id !== deleteId));
+  }
+
   return (
     <div className='container'>
-      <ReminderList items={reminders} />
+      <ReminderList items={reminders} onDeleteReminder={handleDelete} />
     </div>
   );
 }
